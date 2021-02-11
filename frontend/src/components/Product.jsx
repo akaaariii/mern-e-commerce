@@ -10,7 +10,7 @@ const Product = ({ product }) => {
       </Link>
       <Card.Body>
         <Link to={`/product/${product._id}`}>
-          <Card.Title className="text-black">{product.name}</Card.Title>
+          <Card.Title className="text-dark">{product.name.toUpperCase()}</Card.Title>
         </Link>
         <Card.Text as="h4">${product.price}</Card.Text>
       </Card.Body>
