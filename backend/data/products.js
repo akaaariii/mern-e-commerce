@@ -1,7 +1,7 @@
 const products = [
   {
     _id: '1',
-    name: 'Leather large bag',
+    name: 'Large bag',
     image: '/images/large_bag.jpg',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste autem a neque fuga, nemo sequi repudiandae?',
     price: '79.9',
