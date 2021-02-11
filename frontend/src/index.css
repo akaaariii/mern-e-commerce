@@ -6,6 +6,9 @@ img {
   max-width: 100%;
   height: auto;
 }
+a:hover {
+  text-decoration: none;
+}
 main {
   min-height: 80vh;
 }
