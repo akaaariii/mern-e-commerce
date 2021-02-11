@@ -16,7 +16,7 @@ const Productpage = ({ match }) => {
         <Col md={5}>
           <h2>{product.name}</h2><hr />
           <p>{product.description}</p>
-          <h5>Price: ${product.price}</h5>
+          <h5>Price: ${product.price}</h5><br />
           <button type="button" className="btn btn-dark btn-lg btn-block">Add to Cart</button>
         </Col>
       </Row>

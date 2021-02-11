@@ -1,0 +1,22 @@
+{
+  "name": "mern-e-commerce",
+  "version": "1.0.0",
+  "description": "MERN shopping cart app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akaaariii/0520-node-final-project.git"
+  },
+  "author": "Akari Tsutsui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akaaariii/0520-node-final-project/issues"
+  },
+  "homepage": "https://github.com/akaaariii/0520-node-final-project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
