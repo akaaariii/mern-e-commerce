@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CheckoutSteps from '../components/CheckoutSteps';
-import { Col, ListGroup, Row, Form, Card} from 'react-bootstrap';
+import Payment from '../components/Payment';
+import { Col, ListGroup, Row, Card} from 'react-bootstrap';
 
 
 const PlaceOrderpage = () => {
   const cart = useSelector(state => state.cart);
 
-  const placeOrderHandler = () => {
-    console.log('order');
-  }
+  const totalPrice = cart.cartItems.reduce((acc, item) => acc + item.qty * item.price, 0);
 
   return (
     <>
@@ -70,14 +69,12 @@ const PlaceOrderpage = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}</Col>
+                  <Col>${totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
             </ListGroup>
             <ListGroup.Item>
-              <button type="button" className="btn btn-dark btn-block" disabled={cart.cartItems === 0} onClick={placeOrderHandler}>
-                Place Order
-              </button>
+              <Payment cart={cart} totalPrice={totalPrice} />
             </ListGroup.Item>
           </Card>
         </Col>
