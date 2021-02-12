@@ -3,8 +3,9 @@ import axios from 'axios'
 import { Card, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const Productpage = ({ match }) => {
-  const [product, setProduct] = useState({})
+const Productpage = ({ history, match }) => {
+  const [product, setProduct] = useState({});
+  const [qty, setQty] = useState(1);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -15,6 +16,10 @@ const Productpage = ({ match }) => {
 
     fetchProduct()
   }, [])
+
+  const addToCartHandler = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
+  }
 
   return (
     <>
@@ -27,7 +32,7 @@ const Productpage = ({ match }) => {
           <h2>{product.name}</h2><hr />
           <p>{product.description}</p>
           <h5>Price: ${product.price}</h5><br />
-          <button type="button" className="btn btn-dark btn-lg btn-block">Add to Cart</button>
+          <button onClick={addToCartHandler} type="button" className="btn btn-dark btn-lg btn-block">Add to Cart</button>
         </Col>
       </Row>
     </>
