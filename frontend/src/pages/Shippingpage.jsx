@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
-import { saveShippingAddress } from '../actions'
+import { saveShippingAddress } from '../actions';
+import CheckoutSteps from '../components/CheckoutSteps';
 
 const Shippingpage = ({ history }) => {
   const cart = useSelector(state => state.cart);
@@ -22,8 +23,9 @@ const Shippingpage = ({ history }) => {
 
   return (
     <>
-      <h1>Shipping</h1>
-      <Form onSubmit={submitHandler} style={{width: '60%'}}>
+      <CheckoutSteps step1 step2 />
+      <h1 style={{width: '60%', margin: 'auto'}} className="mb-3">Shipping</h1>
+      <Form onSubmit={submitHandler} style={{width: '60%', margin: 'auto'}}>
         <Form.Group controlId='address'>
           <Form.Label>Address</Form.Label>
           <Form.Control
@@ -72,7 +74,7 @@ const Shippingpage = ({ history }) => {
           </Form.Control>
         </Form.Group>
 
-        <button className="btn btn-warning" type="submit">Continue</button>
+        <button className="btn btn-secondary" type="submit">Continue</button>
       </Form>
     </>
   )
