@@ -35,7 +35,7 @@ const Paymentpage = ({ history }) => {
         </div>
         </Form.Group>
 
-        <button className="btn btn-secondary" type="submit">Continue</button>
+        <button className="btn btn-dark" type="submit">Continue</button>
       </Form>
     </>
   )

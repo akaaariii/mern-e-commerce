@@ -80,6 +80,8 @@ const Cartpage = ({ match, location, history, auth }) => {
                       </button>
                     </Col>
                   </Row>
+                  <br />
+                  <Link to="/" className="text-dark">&lt; Continue Shopping</Link>
                 </ListGroup.Item>
               ))}
             </ListGroup>
@@ -93,7 +95,7 @@ const Cartpage = ({ match, location, history, auth }) => {
                 Total: ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}
               </ListGroup.Item>
               <ListGroup.Item>
-                <button type="button" className="btn btn-secondary btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>
+                <button type="button" className="btn btn-dark btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>
                   Proceed To Checkout
                 </button>
               </ListGroup.Item>
@@ -101,8 +103,6 @@ const Cartpage = ({ match, location, history, auth }) => {
           </Card>
         </Col>
       </Row>
-      <br />
-      <Link to="/" className="text-dark">&lt; Continue Shopping</Link>
     </>
   )
 }
