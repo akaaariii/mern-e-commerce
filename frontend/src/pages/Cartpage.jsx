@@ -93,7 +93,7 @@ const Cartpage = ({ match, location, history, auth }) => {
                 Total: ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}
               </ListGroup.Item>
               <ListGroup.Item>
-                <button type="button" className="btn btn-warning btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>
+                <button type="button" className="btn btn-secondary btn-block" disabled={cartItems.length === 0} onClick={checkoutHandler}>
                   Proceed To Checkout
                 </button>
               </ListGroup.Item>

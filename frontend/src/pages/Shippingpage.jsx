@@ -74,7 +74,7 @@ const Shippingpage = ({ history }) => {
           </Form.Control>
         </Form.Group>
 
-        <button className="btn btn-warning" type="submit">Continue</button>
+        <button className="btn btn-secondary" type="submit">Continue</button>
       </Form>
     </>
   )
