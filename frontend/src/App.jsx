@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import Productpage from './pages/Productpage';
 import Cartpage from './pages/Cartpage';
+import Loginpage from './pages/Loginpage';
 
 
 const App = ({ fetchUser }) => {
@@ -24,6 +25,7 @@ const App = ({ fetchUser }) => {
         <Route exact path="/" component={Homepage} />
         <Route exact path="/product/:id" component={Productpage} />
         <Route exact path="/cart/:id?" component={Cartpage} />
+        <Route exact path="/login" component={Loginpage} />
       </main>
       <Footer /> 
     </Router>
