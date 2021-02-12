@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../actions';
 import { Col, ListGroup, Row, Form, Card} from 'react-bootstrap';
 
-const Cartpage = ({ match, location, history }) => {
+const Cartpage = ({ match, location, history, auth }) => {
+  const [userState, setUserState] = useState(null);
   const productId = match.params.id;
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
@@ -17,6 +18,7 @@ const Cartpage = ({ match, location, history }) => {
   // console.log(cartItems)
 
   useEffect(() => {
+    setUserState(auth);
     if(productId){
       dispatch(addToCart(productId, qty))
     }
@@ -27,7 +29,11 @@ const Cartpage = ({ match, location, history }) => {
   }
 
   const checkoutHandler = () => {
-    history.push('/login?redirect=shipping');
+    if(auth){
+      history.push('/shipping');
+    } else {
+      history.push('/login');
+    }
   }
 
   return (
@@ -101,4 +107,8 @@ const Cartpage = ({ match, location, history }) => {
   )
 }
 
-export default Cartpage
+const mapStateToProps = ({ auth: { user }}) => {
+  return { auth: user }
+}
+
+export default connect(mapStateToProps)(Cartpage)
