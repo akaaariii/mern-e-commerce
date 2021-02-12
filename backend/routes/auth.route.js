@@ -1,24 +1,17 @@
 const express = require('express');
 const passport = require('passport');
-
 const router = express.Router();
 
-router.get('/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
-}));
+const authController = require('../controllers/auth.controller');
 
-router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-  res.redirect('/');
-});
 
-router.get('/current_user', (req, res) => {
-  res.send(req.user);
-});
+router.get('/google', authController.login);
 
-router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
-});
+router.get('/google/callback', passport.authenticate('google'), authController.loginCallback);
+
+router.get('/current_user', authController.getCurrentUser);
+
+router.get('/logout', authController.logout);
 
 
 module.exports = router;
