@@ -10,6 +10,7 @@ import Homepage from './pages/Homepage';
 import Productpage from './pages/Productpage';
 import Cartpage from './pages/Cartpage';
 import Loginpage from './pages/Loginpage';
+import Shippingpage from './pages/Shippingpage';
 
 
 const App = ({ fetchUser }) => {
@@ -26,6 +27,7 @@ const App = ({ fetchUser }) => {
         <Route exact path="/product/:id" component={Productpage} />
         <Route exact path="/cart/:id?" component={Cartpage} />
         <Route exact path="/login" component={Loginpage} />
+        <Route exact path="/shipping" component={Shippingpage} />
       </main>
       <Footer /> 
     </Router>
