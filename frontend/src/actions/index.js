@@ -7,10 +7,10 @@ export const fetchUser = () => async (dispatch) => {
   if(response) dispatch({ type: FETCH_USER, payload: response.data });
 }
 
-// export const handleToken = (token) => async (dispatch) => {
-//   const response = await axios.post('/api/stripe', token);
-//   if(response) dispatch({ type: FETCH_USER, payload: response.data });
-// }
+export const handleToken = (token) => async (dispatch) => {
+  const response = await axios.post('/api/stripe', token);
+  if(response) dispatch({ type: FETCH_USER, payload: response.data });
+}
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`)

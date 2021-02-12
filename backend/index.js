@@ -25,8 +25,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const authRoutes = require('./routes/auth.route');
+// const billingRoutes = require('./routes/billing.route');
 
 app.use('/api/auth', authRoutes);
+// app.use('/api/stripe', billingRoutes);
 
 
 app.get('/api/products', (req, res) => {
