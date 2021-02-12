@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import Productpage from './pages/Productpage';
+import Cartpage from './pages/Cartpage';
 
 
 const App = ({ fetchUser }) => {
@@ -22,6 +23,7 @@ const App = ({ fetchUser }) => {
       <main className="container py-3">
         <Route exact path="/" component={Homepage} />
         <Route exact path="/product/:id" component={Productpage} />
+        <Route exact path="/cart/:id?" component={Cartpage} />
       </main>
       <Footer /> 
     </Router>
