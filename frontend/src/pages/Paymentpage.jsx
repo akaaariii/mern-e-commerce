@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { savePaymentMethod } from '../actions';
@@ -36,6 +37,9 @@ const Paymentpage = ({ history }) => {
         </Form.Group>
 
         <button className="btn btn-dark" type="submit">Continue</button>
+
+        <br /><br />
+        <Link to="/shipping" className="text-dark">&lt; Go Back</Link>
       </Form>
     </>
   )

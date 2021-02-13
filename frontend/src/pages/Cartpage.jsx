@@ -80,8 +80,6 @@ const Cartpage = ({ match, location, history, auth }) => {
                       </button>
                     </Col>
                   </Row>
-                  <br />
-                  <Link to="/" className="text-dark">&lt; Continue Shopping</Link>
                 </ListGroup.Item>
               ))}
             </ListGroup>
@@ -103,6 +101,8 @@ const Cartpage = ({ match, location, history, auth }) => {
           </Card>
         </Col>
       </Row>
+      <br />
+      {!(cartItems.length === 0) && <Link to="/" className="text-dark">&lt; Continue Shopping</Link>}
     </>
   )
 }
