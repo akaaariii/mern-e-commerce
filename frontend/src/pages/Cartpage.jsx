@@ -32,7 +32,7 @@ const Cartpage = ({ match, location, history, auth }) => {
     if(auth){
       history.push('/shipping');
     } else {
-      history.push('/login');
+      window.location.href = '/api/auth/google';
     }
   }
 
