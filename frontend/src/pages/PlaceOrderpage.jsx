@@ -23,8 +23,8 @@ const PlaceOrderpage = () => {
                 <strong>Address: </strong>
                 {cart.shippingAddress.address}, 
                 {cart.shippingAddress.city}, 
-                {cart.shippingAddress.postalCode}, 
-                {cart.shippingAddress.country}
+                {cart.shippingAddress.country},
+                {cart.shippingAddress.postalCode}
               </p>
             </ListGroup.Item>
 
@@ -72,10 +72,10 @@ const PlaceOrderpage = () => {
                   <Col>${totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
+              <ListGroup.Item>
+                <Payment cart={cart} totalPrice={totalPrice} />
+              </ListGroup.Item>
             </ListGroup>
-            <ListGroup.Item>
-              <Payment cart={cart} totalPrice={totalPrice} />
-            </ListGroup.Item>
           </Card>
         </Col>
       </Row>
