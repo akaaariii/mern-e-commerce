@@ -7,9 +7,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
     <Nav className="justify-content-center mb-4">
       <Nav.Item>
         {step1 ? (
-          <Link to="/login">
-            <Nav.Link className="text-primary">Log In</Nav.Link>
-          </Link>
+          <Nav.Link as={Link} id="RouterNavLink" to="/login" className="text-primary">Log In</Nav.Link>
         ) : (
           <Nav.Link disabled>Log In</Nav.Link>
         )}
@@ -17,9 +15,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 
       <Nav.Item>
         {step2 ? (
-          <Link to="/shipping">
-            <Nav.Link className="text-primary">Shipping</Nav.Link>
-          </Link>
+          <Nav.Link as={Link} id="RouterNavLink" to="/shipping" className="text-primary">Shipping</Nav.Link>
         ) : (
           <Nav.Link disabled>Shipping</Nav.Link>
         )}
@@ -27,9 +23,7 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 
       <Nav.Item>
         {step3 ? (
-          <Link to="/payment">
-            <Nav.Link className="text-primary">Payment</Nav.Link>
-          </Link>
+          <Nav.Link as={Link} id="RouterNavLink" to="/payment" className="text-primary">Payment</Nav.Link>
         ) : (
           <Nav.Link disabled>Payment</Nav.Link>
         )}
@@ -37,14 +31,11 @@ const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
 
       <Nav.Item>
         {step4 ? (
-          <Link to="/placeorder">
-            <Nav.Link className="text-primary">Place Order</Nav.Link>
-          </Link>
+          <Nav.Link as={Link} id="RouterNavLink" to="/placeorder" className="text-primary">Place Order</Nav.Link>
         ) : (
           <Nav.Link disabled>Place Order</Nav.Link>
         )}
       </Nav.Item>
-      
     </Nav>
   )
 }
