@@ -39,7 +39,7 @@ const Paymentpage = ({ history }) => {
         <button className="btn btn-dark" type="submit">Continue</button>
 
         <br /><br />
-        <Link to="/shipping" className="text-dark">&lt; Go Back</Link>
+        <Link to="/shipping" className="text-dark">&lt; Return to SHIPPING</Link>
       </Form>
     </>
   )

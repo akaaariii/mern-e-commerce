@@ -79,7 +79,7 @@ const PlaceOrderpage = () => {
           </Card>
         </Col>
       </Row>
-      <Link to="/payment" className="text-dark">&lt; Go Back</Link>
+      <Link to="/payment" className="text-dark">&lt; Return to PAYMENT</Link>
     </>
   )
 }
