@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector, connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../actions';
 import { Col, ListGroup, Row, Form, Card} from 'react-bootstrap';
+import styled from 'styled-components';
+
+
+const RemoveButton = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: .8em;
+`;
 
 const Cartpage = ({ match, location, history, auth }) => {
   const [userState, setUserState] = useState(null);
@@ -75,9 +83,9 @@ const Cartpage = ({ match, location, history, auth }) => {
                       </Form.Control>
                     </Col>
                     <Col md={2}>
-                      <button className="btn btn-outline-secondary" type="button" onClick={() => removeFromCartHandler(item.product)}>
-                        <i className="fas fa-trash"></i>
-                      </button>
+                      <RemoveButton type="button" onClick={() => removeFromCartHandler(item.product)}>
+                        Remove
+                      </RemoveButton>
                     </Col>
                   </Row>
                 </ListGroup.Item>
