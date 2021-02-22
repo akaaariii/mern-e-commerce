@@ -1,15 +1,14 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
-// const dotenv = require('dotenv');
+const connectDB = require('./config/db');
 
+connectDB();
 
 require('./models/userModel');
 require('./services/passport');
 const keys = require('./config/keys');
 
-// dotenv.config()
 
 const app = express();
 
@@ -48,13 +47,5 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 
-mongoose
-  .connect(keys.mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    const PORT = process.env.PORT || 5000
-    app.listen(PORT, () => console.log(`Server has start running on port ${PORT}`))
-  })
-  .catch(err => console.error(`Error: ${err.message}`))
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => console.log(`Server has start running on port ${PORT}`))
