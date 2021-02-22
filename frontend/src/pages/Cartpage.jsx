@@ -6,12 +6,6 @@ import { Col, ListGroup, Row, Form, Card} from 'react-bootstrap';
 import styled from 'styled-components';
 
 
-const RemoveButton = styled.button`
-  border: none;
-  background-color: transparent;
-  font-size: .8em;
-`;
-
 const Cartpage = ({ match, location, history, auth }) => {
   const [userState, setUserState] = useState(null);
   const productId = match.params.id;
@@ -120,3 +114,10 @@ const mapStateToProps = ({ auth: { user }}) => {
 }
 
 export default connect(mapStateToProps)(Cartpage)
+
+
+const RemoveButton = styled.button`
+  border: none;
+  background-color: transparent;
+  font-size: .8em;
+`;
