@@ -30,7 +30,7 @@ const Header = ({ auth }) => {
               </li>
             ) : (
               <li className="nav-item">
-                <a className="nav-link" href="/api/auth/google"><i className="fas fa-user"></i> Login</a>
+                <Link className="nav-link" to="/login"><i className="fas fa-user"></i> Login</Link>
               </li>
             )}
             
