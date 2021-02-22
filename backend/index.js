@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 // const dotenv = require('dotenv');
-const products = require('./data/products');
+
 
 require('./models/userModel');
 require('./services/passport');
@@ -24,21 +24,14 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const authRoutes = require('./routes/auth.route');
-// const billingRoutes = require('./routes/billing.route');
+const authRoutes = require('./routes/authRoute');
+const productRoutes = require('./routes/productRoute');
+// const billingRoutes = require('./routes/billingRoute');
 
 app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
 // app.use('/api/stripe', billingRoutes);
 
-
-app.get('/api/products', (req, res) => {
-  res.json(products)
-});
-
-app.get('/api/products/:id', (req, res) => {
-  const product = products.find(p => p._id === req.params.id)
-  res.json(product)
-});
 
 
 if(process.env.NODE_ENV === 'production'){
