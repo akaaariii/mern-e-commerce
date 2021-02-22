@@ -49,11 +49,16 @@ const Productpage = ({ history, match }) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Status:</Col>
-                  <Col>{product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Col>
+                  <Col>{product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-              <button onClick={addToCartHandler} type="button" className="btn btn-dark btn-lg btn-block">Add to Cart - ${product.price}</button>
+              <button 
+                onClick={addToCartHandler} 
+                type="button" 
+                className="btn btn-dark btn-lg btn-block"
+                disabled={product.countInStock === 0}  
+              >Add to Cart - ${product.price}</button>
               </ListGroup.Item>
             </ListGroup>
           </Card>
