@@ -21,7 +21,7 @@ const Homepage = () => {
       <h1>Latest Products</h1>
       <Row>
         {products.map((product) => (
-          <Col key={product._id} lg={3}>
+          <Col key={product._id} lg={3} md={4} sm={6}>
             <Product product={product} />
           </Col>
         ))}

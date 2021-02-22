@@ -24,7 +24,7 @@ const Header = ({ auth }) => {
                 <Link className="nav-link" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/cart"><i class="fas fa-shopping-bag"></i> Cart</Link>
+                <Link className="nav-link" to="/cart"><i className="fas fa-shopping-bag"></i> Cart</Link>
               </li>
   
               {userState ? (

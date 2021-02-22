@@ -15,7 +15,7 @@ const Productpage = ({ history, match }) => {
     }
 
     fetchProduct()
-  }, [])
+  }, [match])
 
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`)
@@ -25,7 +25,7 @@ const Productpage = ({ history, match }) => {
     <>
       <Link className="btn btn-outline-secondary my-3" to="/">Go Back</Link>
       <Row>
-        <Col md={5}>
+        <Col md={5} className="mb-3">
           <img src={product.image} alt={product.name} />
         </Col>
         <Col md={4}>
