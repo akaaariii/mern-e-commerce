@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import GlobalStyle from './globalStyles';
 
 import * as actions from './actions';
 
@@ -23,6 +24,7 @@ const App = ({ fetchUser }) => {
 
   return (
     <Router>
+      <GlobalStyle />
       <Header />
       <main className="container py-3">
         <Route exact path="/" component={Homepage} />
