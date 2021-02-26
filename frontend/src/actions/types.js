@@ -1,5 +1,13 @@
-export const FETCH_USER = 'fetch_user'
-export const CART_ADD_ITEM = 'cart_add_item'
-export const CART_REMOVE_ITEM = 'cart_remove_item'
-export const CART_SAVE_SHIPPING_ADDRESS = 'cart_save_shipping_address'
-export const CART_SAVE_PAYMENT_METHOD = 'cart_save_payment_method'
+// Auth
+export const FETCH_USER = 'FETCH_USER'
+
+// Cart
+export const CART_ADD_ITEM = 'CART_ADD_ITEM'
+export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM'
+export const CART_SAVE_SHIPPING_ADDRESS = 'CART_SAVE_SHIPPING_ADDRESS'
+export const CART_SAVE_PAYMENT_METHOD = 'CART_SAVE_PAYMENT_METHOD'
+
+// Product
+export const PRODUCT_LIST_REQUEST = 'PRODUCT_LIST_REQUEST'
+export const PRODUCT_LIST_SUCCESS = 'PRODUCT_LIST_SUCCESS'
+export const PRODUCT_LIST_FAIL = 'PRODUCT_LIST_FAIL'
