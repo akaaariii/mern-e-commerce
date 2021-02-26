@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
-import { savePaymentMethod } from '../actions';
+import { savePaymentMethod } from '../actions/cartAction';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 

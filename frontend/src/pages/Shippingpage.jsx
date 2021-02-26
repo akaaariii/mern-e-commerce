@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
-import { saveShippingAddress } from '../actions';
+import { saveShippingAddress } from '../actions/cartAction';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 const Shippingpage = ({ history }) => {
