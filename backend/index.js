@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
 
 connectDB();
@@ -30,6 +31,10 @@ const productRoutes = require('./routes/productRoute');
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 // app.use('/api/stripe', billingRoutes);
+
+
+app.use(notFound)
+app.use(errorHandler)
 
 
 
