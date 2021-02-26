@@ -1,33 +1,47 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col } from 'react-bootstrap'
 import Product from '../components/Product'
+import Message from '../components/Message'
+import { listProducts } from '../actions/productAction'
+import spinner from '../assets/images/spinner.gif'
+import styled from 'styled-components'
+
 
 const Homepage = () => {
-  const [products, setProducts] = useState([])
+  const dispatch = useDispatch();
+
+  const productList = useSelector(state => state.productList);
+  const { loading, error, products } = productList;
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products')
+    dispatch(listProducts())
+  }, [dispatch])
 
-      setProducts(data)
-    }
-
-    fetchProducts()
-  }, [])
 
   return (
     <>
       <h1>Latest Products</h1>
-      <Row>
-        {products.map((product) => (
-          <Col key={product._id} lg={3} md={4} sm={6}>
-            <Product product={product} />
-          </Col>
-        ))}
-      </Row> 
+      {loading ? (
+        <Spinner src={spinner} />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : 
+        <Row>
+          {products.map((product) => (
+            <Col key={product._id} lg={3} md={4} sm={6}>
+              <Product product={product} />
+            </Col>
+          ))}
+        </Row> 
+      }
     </>
   )
 }
 
 export default Homepage
+
+
+const Spinner = styled.img`
+  margin: auto;
+`;
