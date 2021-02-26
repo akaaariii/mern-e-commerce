@@ -65,7 +65,7 @@ const products = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste autem a neque fuga, nemo sequi repudiandae?',
     category: 'Accessories',
     price: '35',
-    countInStock: 5,
+    countInStock: 0,
     rating: 4.5,
     numReviews: 7
   },

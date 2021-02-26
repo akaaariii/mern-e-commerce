@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector, connect } from 'react-redux';
-import { addToCart, removeFromCart } from '../actions';
+import { addToCart, removeFromCart } from '../actions/cartAction';
 import { Col, ListGroup, Row, Form, Card} from 'react-bootstrap';
 import styled from 'styled-components';
 
 
+// @location   To get query string
 const Cartpage = ({ match, location, history, auth }) => {
   const [userState, setUserState] = useState(null);
   const productId = match.params.id;
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
-  // console.log(qty);
+  // console.log(qty); -> ?qty=1
 
   const dispatch = useDispatch();
 
@@ -26,16 +27,18 @@ const Cartpage = ({ match, location, history, auth }) => {
     }
   }, [dispatch, productId, qty]);
 
+
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))
   }
 
   const checkoutHandler = () => {
-    if(auth){
-      history.push('/shipping');
-    } else {
-      window.location.href = '/api/auth/google';
-    }
+    // if(auth){
+    //   history.push('/shipping');
+    // } else {
+    //   history.push('/login');
+    // }
+    history.push('/login?redirect=shipping');
   }
 
   return (
@@ -48,7 +51,7 @@ const Cartpage = ({ match, location, history, auth }) => {
             :
             <ListGroup variant="flush">
               {cartItems.map(item => (
-                <ListGroup.Item key={item.product}>
+                <ListGroup.Item key={item.product}> {/* item.product is id */}
                   <Row>
                     <Col md={3}>
                       <img src={item.image} alt={item.name} className="rounded" />
@@ -60,21 +63,17 @@ const Cartpage = ({ match, location, history, auth }) => {
                       ${item.price}
                     </Col>
                     <Col md={2}>
-                      <Form.Control
+                      <FormControl
                         as='select'
                         value={item.qty}
-                        onChange={(e) =>
-                          dispatch(
-                            addToCart(item.product, Number(e.target.value))
-                          )
-                        }
+                        onChange={(e) =>dispatch(addToCart(item.product, Number(e.target.value)))}
                       >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </Form.Control>
+                        {[...Array(item.countInStock).keys()].map(x => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </FormControl>
                     </Col>
                     <Col md={2}>
                       <RemoveButton type="button" onClick={() => removeFromCartHandler(item.product)}>
@@ -87,6 +86,7 @@ const Cartpage = ({ match, location, history, auth }) => {
             </ListGroup>
           }
         </Col>
+
         <Col md={4}>
           <Card>
             <ListGroup variant="flush">
@@ -104,6 +104,7 @@ const Cartpage = ({ match, location, history, auth }) => {
         </Col>
       </Row>
       <br />
+
       {!(cartItems.length === 0) && <Link to="/" className="text-dark">&lt; Continue Shopping</Link>}
     </>
   )
@@ -120,4 +121,8 @@ const RemoveButton = styled.button`
   border: none;
   background-color: transparent;
   font-size: .8em;
+`;
+
+const FormControl = styled(Form.Control)`
+  padding: 6px 12px;
 `;
