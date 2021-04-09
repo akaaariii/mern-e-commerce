@@ -7,7 +7,7 @@ exports.getAll = asyncHandler(async (req, res) => {
   res.json(products)
 });
 
-exports.show = asyncHandler(async (req, res) => {
+exports.getoneById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if(product){
