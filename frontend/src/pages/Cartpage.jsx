@@ -12,7 +12,7 @@ const Cartpage = ({ match, location, history, auth }) => {
   const productId = match.params.id;
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
-  // console.log(qty); -> ?qty=1
+  // console.log(location.search); -> ?qty=1
 
   const dispatch = useDispatch();
 
@@ -33,12 +33,12 @@ const Cartpage = ({ match, location, history, auth }) => {
   }
 
   const checkoutHandler = () => {
-    // if(auth){
-    //   history.push('/shipping');
-    // } else {
-    //   history.push('/login');
-    // }
-    history.push('/login?redirect=shipping');
+    if(auth){
+      history.push('/shipping');
+    } else {
+      history.push('/login');
+    }
+    // history.push('/login?redirect=shipping');
   }
 
   return (

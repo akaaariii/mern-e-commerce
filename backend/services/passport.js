@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
+// const bcrypt = require('bcryptjs')
 
 const keys = require('../config/keys');
 const User = mongoose.model('User');
@@ -30,5 +31,14 @@ passport.use(new GoogleStrategy({
     return done(null, existingUser)
   }
   const user = await new User({ googleId: profile.id }).save();
+
+  // email check
+  // const user = await new User(
+  //   { 
+  //     googleId: profile.id,
+  //     name: 'unknown',
+  //     email: profile.emails[0].value,
+  //     password: bcrypt.hashSync('123456', 10),
+  //   }).save();
   done(null, user);
 }));

@@ -9,7 +9,7 @@ router.get('/', productController.getAll);
 
 // @desc   Fetch single products
 // @route  GET /api/products/:id
-router.get('/:id', productController.show);
+router.get('/:id', productController.getoneById);
 
 
 module.exports = router;
