@@ -25,7 +25,7 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', express.static(path.join(__dirname, '/frontend/build')));
+// app.use('/', express.static(path.join(__dirname, '/frontend/build')));
 
 const authRoutes = require('./routes/authRoute');
 const productRoutes = require('./routes/productRoute');
@@ -34,10 +34,6 @@ const productRoutes = require('./routes/productRoute');
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 // app.use('/api/stripe', billingRoutes);
-
-
-app.use(notFound)
-app.use(errorHandler)
 
 
 
@@ -53,6 +49,8 @@ if(process.env.NODE_ENV === 'production'){
   })
 }
 
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`Server has start running on port ${PORT}`))
