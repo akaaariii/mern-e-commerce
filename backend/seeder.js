@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-const users = require('./data/users');
+// const users = require('./data/users');
 const products = require('./data/products');
 
 const User = require('./models/userModel');
@@ -17,15 +17,16 @@ const importData = async () => {
     await Product.deleteMany();
     await User.deleteMany();
 
-    const createdUsers = await User.insertMany(users);
+    // const createdUsers = await User.insertMany(users);
 
-    const adminUser = createdUsers[0]._id;
+    // const adminUser = createdUsers[0]._id;
 
-    const sampleProducts = products.map(product => {
-      return { ...product, user: adminUser }
-    });
+    // const sampleProducts = products.map(product => {
+    //   return { ...product, user: adminUser }
+    // });
+    // await Product.insertMany(sampleProducts);
 
-    await Product.insertMany(sampleProducts);
+    await Product.insertMany(products);
 
     console.log('Data Imported!');
     process.exit();
