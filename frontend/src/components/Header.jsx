@@ -7,7 +7,7 @@ const Header = ({ auth }) => {
   const [userState, setUserState] = useState(null);
 
   useEffect(() => {
-    // console.log(auth);
+    console.log(auth);
     setUserState(auth);
   }, [auth])
 
