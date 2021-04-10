@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
@@ -24,6 +25,8 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/', express.static(path.join(__dirname, '/frontend/build')));
+
 const authRoutes = require('./routes/authRoute');
 const productRoutes = require('./routes/productRoute');
 // const billingRoutes = require('./routes/billingRoute');
@@ -39,8 +42,6 @@ app.use(errorHandler)
 
 
 if(process.env.NODE_ENV === 'production'){
-  const path = require('path')
-  
   app.use(express.static(path.join(__dirname, '/frontend/build')))
   
   app.get('*', (req, res) => {
