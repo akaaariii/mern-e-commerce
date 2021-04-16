@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Navbar } from 'react-bootstrap';
+import { Navbar, NavDropdown } from 'react-bootstrap';
 
 const Header = ({ auth }) => {
   const [userState, setUserState] = useState(null);
 
   useEffect(() => {
-    console.log(auth);
+    // console.log(auth);
     setUserState(auth);
   }, [auth])
 
@@ -28,9 +28,11 @@ const Header = ({ auth }) => {
               </li>
   
               {userState ? (
-                <li className="nav-item">
-                  <a className="nav-link" href="/api/auth/logout"><i className="fas fa-user"></i> Logout</a>
-                </li>
+                <NavDropdown title={userState.name} id="username">
+                  <NavDropdown.Item href="/api/auth/logout">
+                    <i className="fas fa-user"></i> Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
               ) : (
                 <li className="nav-item">
                   <Link className="nav-link" to="/login"><i className="fas fa-user"></i> Login</Link>

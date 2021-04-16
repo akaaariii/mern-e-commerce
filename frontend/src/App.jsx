@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import GlobalStyle from './globalStyles';
 
-import * as actions from './actions';
+import * as actions from './actions/authAction';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
