@@ -2,7 +2,7 @@ import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import { connect } from 'react-redux';
 
-import * as actions from '../actions';
+import * as actions from '../actions/authAction';
 
 const Payment = ({ handleToken, cart, totalPrice }) => {
   return (

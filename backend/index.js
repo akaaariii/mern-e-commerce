@@ -25,8 +25,6 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use('/', express.static(path.join(__dirname, '/frontend/build')));
-
 const authRoutes = require('./routes/authRoute');
 const productRoutes = require('./routes/productRoute');
 // const billingRoutes = require('./routes/billingRoute');
