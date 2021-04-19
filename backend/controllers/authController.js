@@ -13,6 +13,7 @@ exports.getCurrentUser = (req, res) => {
 };
 
 exports.logout = (req, res) => {
+  // Invoking logout() will remove the req.user property and clear the login session.
   req.logout();
   res.redirect('/');
 };
