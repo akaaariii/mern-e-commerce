@@ -20,7 +20,7 @@ const Orderpage = ({ match }) => {
     if(!order || order._id !== orderId) {
       dispatch(getOrderDetails(orderId))
     }
-  }, []);
+  }, [dispatch, orderId]);
 
   return (
     <>
@@ -98,9 +98,9 @@ const Orderpage = ({ match }) => {
                     </Row>
                   </ListGroup.Item>
 
-                  {/* <ListGroup.Item>
-                    <Payment cart={cart} totalPrice={totalPrice} />
-                  </ListGroup.Item> */}
+                  <ListGroup.Item>
+                    <Payment order={order} totalPrice={order.totalPrice} />
+                  </ListGroup.Item>
                 </ListGroup>
               </Card>
             </Col>
