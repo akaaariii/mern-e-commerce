@@ -27,10 +27,12 @@ app.use(passport.session());
 
 const authRoutes = require('./routes/authRoute');
 const productRoutes = require('./routes/productRoute');
+const orderRoutes = require('./routes/orderRoute');
 // const billingRoutes = require('./routes/billingRoute');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 // app.use('/api/stripe', billingRoutes);
 
 
