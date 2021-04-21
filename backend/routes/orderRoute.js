@@ -11,5 +11,9 @@ router.post('/', orderController.addOrderItems);
 // @route  GET /api/orders/:id
 router.get('/:id', orderController.getOrderById);
 
+// @desc   Update order to paid
+// @route  GET /api/orders/:id/pay
+router.put('/:id/pay', orderController.updateOrderToPaid);
+
 
 module.exports = router;
