@@ -14,7 +14,7 @@ const orderSchema = new Schema(
         qty: { type: Number, required: true },
         image: { type: String, required: true },
         price: { type: Number, required: true },
-        products: {
+        product: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: 'Product'
@@ -38,16 +38,6 @@ const orderSchema = new Schema(
       update_time: { type: String },
       email_address: { type: String },
     },
-    taxPrice: {
-      type: Number,
-      required: true,
-      default: 0.0
-    },
-    shippingPrice: {
-      type: Number,
-      required: true,
-      default: 0.0
-    },
     totalPrice: {
       type: Number,
       required: true,
@@ -61,14 +51,6 @@ const orderSchema = new Schema(
     paidAt: {
       type: Date
     },
-    isDelivered: {
-      type: Boolean,
-      required: true,
-      default: false
-    },
-    deliveredAt: {
-      type: Date
-    }
   },
   {
     timestamps: true
