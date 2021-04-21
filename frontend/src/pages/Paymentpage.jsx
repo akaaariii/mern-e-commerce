@@ -41,14 +41,6 @@ const Paymentpage = ({ history }) => {
               checked 
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
-            <Form.Check 
-              type="radio" 
-              label="PayPal or Credit Card" 
-              id="PayPal" 
-              name="paymentMethod" 
-              value="PayPal" 
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            ></Form.Check>
           </div>
         </Form.Group>
 
