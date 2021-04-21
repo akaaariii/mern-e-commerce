@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CheckoutSteps from '../components/CheckoutSteps';
 import Payment from '../components/Payment';
+import Message from '../components/Message';
 import { Col, ListGroup, Row, Card} from 'react-bootstrap';
 import { createOrder } from '../actions/orderAction';
 
@@ -96,7 +97,7 @@ const PlaceOrderpage = ({ history }) => {
               </ListGroup.Item>
               {error &&
                 <ListGroup.Item>
-                  <p>Something went wrong. Please try again.</p>
+                  <Message variant="danger">{error}</Message>
                 </ListGroup.Item>
               }
               <ListGroup.Item>

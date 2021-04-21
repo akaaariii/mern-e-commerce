@@ -14,6 +14,7 @@ import Loginpage from './pages/Loginpage';
 import Shippingpage from './pages/Shippingpage';
 import Paymentpage from './pages/Paymentpage';
 import PlaceOrderpage from './pages/PlaceOrderpage';
+import Orderpage from './pages/Orderpage';
 
 
 const App = ({ fetchUser }) => {
@@ -34,6 +35,7 @@ const App = ({ fetchUser }) => {
         <Route exact path="/shipping" component={Shippingpage} />
         <Route exact path="/payment" component={Paymentpage} />
         <Route exact path="/placeorder" component={PlaceOrderpage} />
+        <Route exact path="/order/:id" component={Orderpage} />
       </main>
       <Footer /> 
     </Router>
