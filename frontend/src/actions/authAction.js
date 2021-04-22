@@ -10,9 +10,3 @@ export const handleToken = (token) => async (dispatch) => {
   const response = await axios.post('/api/stripe', token);
   if(response) dispatch({ type: FETCH_USER, payload: response.data });
 }
-
-// export const logout = () => (dispatch) => {
-//   localStorage.removeItem('cartItems');
-//   localStorage.removeItem('paymentMethod');
-//   localStorage.removeItem('shippingAddress');
-// }

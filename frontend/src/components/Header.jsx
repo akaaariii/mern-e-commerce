@@ -11,6 +11,11 @@ const Header = ({ auth }) => {
     setUserState(auth);
   }, [auth])
 
+  const logoutHandler = () => {
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('paymentMethod');
+    localStorage.removeItem('shippingAddress');
+  }
 
   return (
     <header>
@@ -29,7 +34,7 @@ const Header = ({ auth }) => {
   
               {userState ? (
                 <NavDropdown title={userState.name} id="username">
-                  <NavDropdown.Item href="/api/auth/logout">
+                  <NavDropdown.Item href="/api/auth/logout" onClick={logoutHandler}>
                     <i className="fas fa-user"></i> Logout
                   </NavDropdown.Item>
                 </NavDropdown>
