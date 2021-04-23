@@ -6,7 +6,11 @@ import Message from '../components/Message';
 import spinner from '../assets/images/spinner.gif';
 import { Col, ListGroup, Row, Card} from 'react-bootstrap';
 import { getOrderDetails } from '../actions/orderAction';
-import styled from 'styled-components'
+import styled from 'styled-components';
+
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUB_KEY);
+
 
 
 const Orderpage = ({ match }) => {
@@ -22,12 +26,26 @@ const Orderpage = ({ match }) => {
     }
   }, [dispatch, orderId]);
 
+  const handleClick = async (event) => {
+    const stripe = await stripePromise;
+    const response = await fetch("/api/create-checkout-session", {
+      method: "POST",
+    });
+    const session = await response.json();
+    console.log(session)
+    // When the customer clicks on the button, redirect them to Checkout.
+    const result = await stripe.redirectToCheckout({ sessionId: session.id });
+    if (result.error) {
+      alert(result.error.message);
+    }
+  };
+
   return (
     <>
       {loading ? <Spinner src={spinner} />
        : error ? <Message variant="danger">{error}</Message>
        : <>
-          <h1>Order : {order._id}</h1>
+          <h1>Your Order : {order._id}</h1>
           <Row>
             <Col md={8}>
               <ListGroup variant="flush">
@@ -57,7 +75,7 @@ const Orderpage = ({ match }) => {
                   {order.isPaid ? (
                     <Message variant="success">Paid on {order.paidAt}</Message>
                   ) : (
-                    <Message variant="warning">Not Paid</Message>
+                    <Message variant="secondary">Not Paid</Message>
                   )}
                 </ListGroup.Item>
   
@@ -99,7 +117,7 @@ const Orderpage = ({ match }) => {
                   </ListGroup.Item>
 
                   <ListGroup.Item>
-                    <Payment order={order} totalPrice={order.totalPrice} />
+                    <Payment order={order} totalPrice={order.totalPrice} handleClick={handleClick} />
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
