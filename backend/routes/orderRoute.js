@@ -12,7 +12,7 @@ router.post('/', orderController.addOrderItems);
 router.get('/:id', orderController.getOrderById);
 
 // @desc   Update order to paid
-// @route  GET /api/orders/:id/pay
+// @route  PUT /api/orders/:id/pay
 router.put('/:id/pay', orderController.updateOrderToPaid);
 
 
