@@ -7,9 +7,15 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 
 router.post('/create-checkout-session', asyncHandler(async (req, res) => {
-  // console.log(res.req.headers.referer)
   const baseUrl = res.req.headers.referer;
   const orderId = baseUrl.split('/')[4];
+
+  let redirectBaseUrl;
+  if(baseUrl.includes('heroku')) {
+    redirectBaseUrl = `https://natleather.herokuapp.com/order/${orderId}`
+  } else {
+    redirectBaseUrl = `http://localhost:3000/order/${orderId}`
+  }
 
   const order = await Order.findById(orderId);
   const lineItems = order.orderItems.map((item) => ({
@@ -27,8 +33,8 @@ router.post('/create-checkout-session', asyncHandler(async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
-      success_url: `${baseUrl}/success`,
-      cancel_url: baseUrl,
+      success_url: `${redirectBaseUrl}/success`,
+      cancel_url: redirectBaseUrl,
       line_items: lineItems
     });
   
