@@ -33,7 +33,7 @@ const billingRoutes = require('./routes/billingRoute');
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('/api/create-checkout-session', billingRoutes);
+app.use('/api/stripe', billingRoutes);
 
 
 

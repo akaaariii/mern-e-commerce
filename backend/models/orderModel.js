@@ -31,13 +31,12 @@ const orderSchema = new Schema(
       type: String,
       required: true
     },
-    paymentResult: {
-      // comming from paypal
-      id: { type: String },
-      status: { type: String },
-      update_time: { type: String },
-      email_address: { type: String },
-    },
+    // paymentResult: {
+    //   // comming from stripe
+    //   id: { type: String },
+    //   payment_status: { type: String },
+    //   customer_email: { type: String },
+    // },
     totalPrice: {
       type: Number,
       required: true,

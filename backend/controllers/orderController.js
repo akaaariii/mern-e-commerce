@@ -7,7 +7,6 @@ exports.addOrderItems = asyncHandler(async (req, res) => {
   if(orderItems && orderItems.length === 0) {
     res.status(400);
     throw new Error('No order items');
-    return
   } else {
     const order = new Order({
       orderItems, 
@@ -39,11 +38,11 @@ exports.updateOrderToPaid = asyncHandler(async (req, res) => {
   if(order) {
     order.isPaid = true;
     order.paidAt = Date.now();
+    // PaymentResult is coming from stripe
     order.paymentResult = {
       id: req.body.id,
-      status: req.body.status,
-      update_time: req.body.update_time,
-      email_address: req.body.payer.email_address,
+      payment_status: req.body.payment_status,
+      customer_email: req.body.payer.customer_email,
     }
 
     const updatedOrder = await order.save();

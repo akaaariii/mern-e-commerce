@@ -6,7 +6,7 @@ const asyncHandler = require('express-async-handler');
 
 const router = express.Router();
 
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/create-checkout-session', asyncHandler(async (req, res) => {
   // console.log(res.req.headers.referer)
   const baseUrl = res.req.headers.referer;
   const orderId = baseUrl.split('/')[4];
@@ -39,6 +39,20 @@ router.post('/', asyncHandler(async (req, res) => {
     throw new Error('Order not found');
   }
 }));
+
+// router.post('/webhook', (req, res) => {
+//   const event = req.body;
+
+//   console.log('event', event);
+
+//   if(event.type === 'checkout.session.completed') {
+//     const session = event.data.opject;
+
+//     console.log('session is', session);
+
+//     res.send(200);
+//   }
+// });
 
 
 module.exports = router;
