@@ -18,10 +18,22 @@ const Cartpage = ({ match, location, history, auth }) => {
 
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
-  // console.log(cartItems)
+
+
+  // To refresh the page if user done payment
+  const reloadAfterCheckout = () => {
+    if(window.name !== 'Donecheckout') {
+      window.location.reload();
+      window.name = 'Donecheckout';
+    } else {
+      window.name = '';
+    }
+  };
+
 
   useEffect(() => {
     setUserState(auth);
+    reloadAfterCheckout();
     if(productId){
       dispatch(addToCart(productId, qty))
     }

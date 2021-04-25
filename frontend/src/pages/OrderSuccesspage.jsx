@@ -4,17 +4,8 @@ import styled from 'styled-components'
 
 const OrderSuccesspage = () => {
 
-  // const getSessionObj = async () => {
-  //   const response = await fetch("/api/stripe/webhook", {
-  //     method: "POST",
-  //   });
-  //   const session = await response.json();
-  //   console.log('session from success page', session)
-  // }
-
   useEffect(() => {
     localStorage.removeItem('cartItems');
-    // getSessionObj();
   }, []);
 
   return (
