@@ -28,11 +28,11 @@ const Orderpage = ({ match }) => {
 
   const handleClick = async (event) => {
     const stripe = await stripePromise;
-    const response = await fetch("/api/create-checkout-session", {
+    const response = await fetch("/api/stripe/create-checkout-session", {
       method: "POST",
     });
     const session = await response.json();
-    console.log(session)
+
     // When the customer clicks on the button, redirect them to Checkout.
     const result = await stripe.redirectToCheckout({ sessionId: session.id });
     if (result.error) {
@@ -117,7 +117,16 @@ const Orderpage = ({ match }) => {
                   </ListGroup.Item>
 
                   <ListGroup.Item>
-                    <Payment order={order} totalPrice={order.totalPrice} handleClick={handleClick} />
+                    {/* <Payment order={order} totalPrice={order.totalPrice} handleClick={handleClick} /> */}
+                    <button 
+                      type="button"
+                      className="btn btn-primary btn-block"
+                      disabled={order.orderItems === 0}
+                      onClick={handleClick}
+                      role="link"
+                    >
+                      Pay ${order.totalPrice}
+                    </button>
                   </ListGroup.Item>
                 </ListGroup>
               </Card>
