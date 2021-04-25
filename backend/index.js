@@ -35,6 +35,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/stripe', billingRoutes);
 
+app.use(express.static(path.join(__dirname, '/../frontend/build')))
 
 
 if(process.env.NODE_ENV === 'production'){
