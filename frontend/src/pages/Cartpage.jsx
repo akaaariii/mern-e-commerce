@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector, connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../actions/cartAction';
@@ -7,38 +7,11 @@ import styled from 'styled-components';
 
 
 // @location   To get query string
-const Cartpage = ({ match, location, history, auth }) => {
-  const [userState, setUserState] = useState(null);
-  const productId = match.params.id;
-
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1;
-  // console.log(location.search); -> ?qty=1
-
+const Cartpage = ({ history, auth }) => {
   const dispatch = useDispatch();
 
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
-
-
-  // To refresh the page if user done payment
-  const reloadAfterCheckout = () => {
-    if(window.name !== 'Donecheckout') {
-      window.location.reload();
-      window.name = 'Donecheckout';
-    } else {
-      window.name = '';
-    }
-  };
-
-
-  useEffect(() => {
-    setUserState(auth);
-    reloadAfterCheckout();
-    if(productId){
-      dispatch(addToCart(productId, qty))
-    }
-  }, [dispatch, productId, qty]);
-
 
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id))

@@ -5,6 +5,7 @@ import { Card, Col, Form, ListGroup, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
 import { listProductDetails } from '../actions/productAction'
+import { addToCart } from '../actions/cartAction';
 import spinner from '../assets/images/spinner.gif'
 import styled from 'styled-components'
 
@@ -16,13 +17,16 @@ const Productpage = ({ history, match }) => {
 
   const productDetails = useSelector(state => state.productDetails);
   const { loading, error, product } = productDetails;
+
+  const productId = match.params.id
   
   useEffect(() => {
-    dispatch(listProductDetails(match.params.id))
-  }, [dispatch, match])
+    dispatch(listProductDetails(productId))
+  }, [dispatch, productId])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`)
+    dispatch(addToCart(productId, qty))
+    history.push(`/cart/${productId}?qty=${qty}`)
   }
 
   return (

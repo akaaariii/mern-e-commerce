@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CheckoutSteps from '../components/CheckoutSteps';
@@ -6,7 +6,7 @@ import Payment from '../components/Payment';
 import Message from '../components/Message';
 import { Col, ListGroup, Row, Card} from 'react-bootstrap';
 import { createOrder } from '../actions/orderAction';
-
+import { clearCart } from '../actions/cartAction';
 
 const PlaceOrderpage = ({ history }) => {
   const dispatch = useDispatch();
@@ -15,16 +15,10 @@ const PlaceOrderpage = ({ history }) => {
   cart.totalPrice = cart.cartItems.reduce((acc, item) => acc + item.qty * item.price, 0);
 
   const orderCreate = useSelector(state => state.orderCreate);
-  const { order, success, error } = orderCreate;
+  const { error } = orderCreate;
 
-  useEffect(() => {
-    if(success) {
-      history.push(`/order/${order._id}`);
-    }
-  }, [history, success]);
-
-  const placeOrderHandler = () => {
-    dispatch(
+  const placeOrderHandler = async () => {
+    const { data } = await dispatch(
       createOrder({
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
@@ -32,6 +26,10 @@ const PlaceOrderpage = ({ history }) => {
         totalPrice: cart.totalPrice,
       })
     )
+    if (data) {
+      dispatch(clearCart())
+      history.push(`/order/${data._id}`);
+    }
   };
 
   return (

@@ -21,6 +21,7 @@ export const createOrder = (order) => async (dispatch) => {
       type: ORDER_CREATE_SUCCESS,
       payload: data
     })
+    return { data }
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAIL,
@@ -28,6 +29,7 @@ export const createOrder = (order) => async (dispatch) => {
                 ? error.response.data.message
                 : error.message
     })
+    return { error }
   }
 }
 
