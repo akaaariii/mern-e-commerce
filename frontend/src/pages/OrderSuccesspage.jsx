@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const OrderSuccesspage = () => {
-
-  useEffect(() => {
-    localStorage.removeItem('cartItems');
-  }, []);
-
   return (
     <div className="text-center mt-5">
       <MsgContainer>
@@ -22,7 +17,6 @@ const OrderSuccesspage = () => {
 }
 
 export default OrderSuccesspage
-
 
 
 const MsgContainer = styled.div`
