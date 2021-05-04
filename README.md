@@ -18,6 +18,7 @@ MERN stack web application
 
 ## Tech Stack
 * React
+* React Hooks
 * Redux
 * Node.js
 * Express.js
