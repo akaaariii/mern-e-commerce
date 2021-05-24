@@ -25,3 +25,4 @@ MERN stack web application
 * Express.js
 * MongoDB
 * Styled-components
+* Bootstrap
