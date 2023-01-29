@@ -2,7 +2,7 @@
 MERN stack web application
 
 ## Overview
-### [demo](https://natleather.herokuapp.com)
+### [demo](https://natleather.onrender.com)
 
 * Authentication : Google Authentication 
 * Payment method : Stripe Checkout
