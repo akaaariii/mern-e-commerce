@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import GlobalStyle from './globalStyles';
 
-import * as actions from './actions';
+import * as actions from './actions/authAction';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -13,6 +14,8 @@ import Loginpage from './pages/Loginpage';
 import Shippingpage from './pages/Shippingpage';
 import Paymentpage from './pages/Paymentpage';
 import PlaceOrderpage from './pages/PlaceOrderpage';
+import Orderpage from './pages/Orderpage';
+import OrderSuccesspage from './pages/OrderSuccesspage';
 
 
 const App = ({ fetchUser }) => {
@@ -23,6 +26,7 @@ const App = ({ fetchUser }) => {
 
   return (
     <Router>
+      <GlobalStyle />
       <Header />
       <main className="container py-3">
         <Route exact path="/" component={Homepage} />
@@ -32,6 +36,8 @@ const App = ({ fetchUser }) => {
         <Route exact path="/shipping" component={Shippingpage} />
         <Route exact path="/payment" component={Paymentpage} />
         <Route exact path="/placeorder" component={PlaceOrderpage} />
+        <Route exact path="/order/:id" component={Orderpage} />
+        <Route exact path="/order/:id/success" component={OrderSuccesspage} />
       </main>
       <Footer /> 
     </Router>

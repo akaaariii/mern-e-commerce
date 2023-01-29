@@ -1,15 +1,16 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const path = require('path');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
-// const dotenv = require('dotenv');
-const products = require('./data/products');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+const connectDB = require('./config/db');
+
+connectDB();
 
 require('./models/userModel');
 require('./services/passport');
 const keys = require('./config/keys');
 
-// dotenv.config()
 
 const app = express();
 
@@ -24,29 +25,23 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const authRoutes = require('./routes/auth.route');
-// const billingRoutes = require('./routes/billing.route');
+const authRoutes = require('./routes/authRoute');
+const productRoutes = require('./routes/productRoute');
+const orderRoutes = require('./routes/orderRoute');
+const billingRoutes = require('./routes/billingRoute');
 
 app.use('/api/auth', authRoutes);
-// app.use('/api/stripe', billingRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/stripe', billingRoutes);
 
-
-app.get('/api/products', (req, res) => {
-  res.json(products)
-});
-
-app.get('/api/products/:id', (req, res) => {
-  const product = products.find(p => p._id === req.params.id)
-  res.json(product)
-});
 
 
 if(process.env.NODE_ENV === 'production'){
-  app.use(express.static('frontend/build'))
+  app.use(express.static(path.join(__dirname, '/../frontend/build')))
   
-  const path = require('path')
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    res.sendFile(path.resolve(__dirname + '/../frontend/build/index.html'))
   })
 } else {
   app.get('/', (req, res) => {
@@ -54,14 +49,8 @@ if(process.env.NODE_ENV === 'production'){
   })
 }
 
+app.use(notFound)
+app.use(errorHandler)
 
-mongoose
-  .connect(keys.mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    const PORT = process.env.PORT || 5000
-    app.listen(PORT, () => console.log(`Server has start running on port ${PORT}`))
-  })
-  .catch(err => console.error(`Error: ${err.message}`))
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => console.log(`Server has start running on port ${PORT}`))

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
-import { savePaymentMethod } from '../actions';
+import { savePaymentMethod } from '../actions/cartAction';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 
@@ -30,10 +30,18 @@ const Paymentpage = ({ history }) => {
       <h1 style={{width: '60%', margin: 'auto'}} className="mb-3">Payment Method</h1>
       <Form onSubmit={submitHandler} style={{width: '60%', margin: 'auto'}}>
         <Form.Group>
-        <legend>Selected Method</legend>
-        <div className="col">
-          <Form.Check type="radio" label="Stripe" id="Stripe" name="paymentMethod" value="Stripe" checked onChange={(e) => setPaymentMethod(e.target.value)}></Form.Check>
-        </div>
+          <legend>Selected Method</legend>
+          <div className="col">
+            <Form.Check 
+              type="radio" 
+              label="Stripe" 
+              id="Stripe" 
+              name="paymentMethod" 
+              value="Stripe" 
+              checked 
+              onChange={(e) => setPaymentMethod(e.target.value)}
+            ></Form.Check>
+          </div>
         </Form.Group>
 
         <button className="btn btn-dark" type="submit">Continue</button>
