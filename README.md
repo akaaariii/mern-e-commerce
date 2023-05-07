@@ -6,7 +6,7 @@ MERN stack web application
 
 * Authentication : Google Authentication 
 * Payment method : Stripe Checkout
-* Deployment : heroku
+* Deployment : render
 * All the products, users and order info are saved in the Database. When users add a product to the cart, it is saved in localStorage.
 
 
